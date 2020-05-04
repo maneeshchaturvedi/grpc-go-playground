@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package calcualtor;
+
+option go_package = "server_streaming/calculator/calculatorpb";
+
+message PrimeFactorsRequest { int32 num = 1; }
+
+message PrimeFactorsResponse { int32 num = 1; }
+
+service CalculatorService {
+    rpc PrimeFactrors(PrimeFactorsRequest) returns (stream PrimeFactorsResponse){};
+} 
