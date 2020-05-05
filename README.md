@@ -31,8 +31,7 @@ This is the API style where the client sends a number of requests and the server
 
 ## grpc error codes
  
- Refer to https://grpc.io/docs/guides/error/
-          http://avi.im/grpc-errors/#go
+ Refer to https://grpc.io/docs/guides/error/  and for details with code walkthrough to http://avi.im/grpc-errors/#go
  
 
 
