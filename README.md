@@ -22,7 +22,7 @@ This is the API style where the client sends a number of requests and the server
 ![](images/ClientSideStreaming.png)
 
 ## Bi Directional Streaming 
-This is the API style where the client sends a number of requests and the server responds with a number of responses. 
+This is the API style where the client sends a number of requests and the server responds with a number of responses. The number of requests and responses dont have to match. You could send 10 requests and maybe receive just 3 responses. Use when the client and server need to send a lot of data asynchrnously like cases where you need long running connections. 
 
 
 ![](images/BiDirectionalStreaming.png)
