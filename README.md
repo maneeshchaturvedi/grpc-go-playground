@@ -19,11 +19,6 @@ This is the API style where the client sends a single request and the server res
 This is the API style where the client sends a number of requests and the server responds with a single response. Consider cases where you need to compute an aggregate sum/running averages over time etc. There is no guarantee that the server will respond only after it has received all the requests from the client. The server may respond as and when it chooses. Thats something which as a developer you need to keep in mind.
 
 
- ## grpc error codes
- 
- Refer to https://grpc.io/docs/guides/error/
-          http://avi.im/grpc-errors/#go
- 
 
 ![](images/ClientSideStreaming.png)
 
@@ -32,4 +27,12 @@ This is the API style where the client sends a number of requests and the server
 
 
 ![](images/BiDirectionalStreaming.png)
+
+
+## grpc error codes
+ 
+ Refer to https://grpc.io/docs/guides/error/
+          http://avi.im/grpc-errors/#go
+ 
+
 
