@@ -26,7 +26,7 @@ func main() {
 func doServerStreaming(client calculatorpb.CalculatorServiceClient) {
 	fmt.Println("Making a server streaming RPC call")
 	request := &calculatorpb.PrimeFactorsRequest{
-		Num: 133,
+		Num: 13342256,
 	}
 
 	resStream, err := client.PrimeFactrors(context.Background(), request)

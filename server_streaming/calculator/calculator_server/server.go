@@ -13,24 +13,19 @@ type server struct{}
 
 func (*server) PrimeFactrors(req *calculatorpb.PrimeFactorsRequest, stream calculatorpb.CalculatorService_PrimeFactrorsServer) error {
 	fmt.Printf("Calculator PrimeFactors invoked with : %v", req)
-	results := make([]int32, 0)
-	var k int32
-	k = 2
+
+	k := int32(2)
 	num := req.GetNum()
 	for num > 1 {
 		if num%k == 0 {
-			results = append(results, k)
+			res := &calculatorpb.PrimeFactorsResponse{
+				Num: k,
+			}
+			stream.Send(res)
 			num = num / k
 		} else {
 			k = k + 1
 		}
-	}
-
-	for _, num := range results {
-		res := &calculatorpb.PrimeFactorsResponse{
-			Num: num,
-		}
-		stream.Send(res)
 	}
 
 	return nil
