@@ -7,13 +7,21 @@ import (
 
 	"github.com/maneeshchaturvedi/grpc-go-playground/server_streaming/calculator/calculatorpb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type server struct{}
 
 func (*server) PrimeFactrors(req *calculatorpb.PrimeFactorsRequest, stream calculatorpb.CalculatorService_PrimeFactrorsServer) error {
-	fmt.Printf("Calculator PrimeFactors invoked with : %v", req)
-
+	fmt.Printf("Calculator PrimeFactors invoked with : %v\n", req)
+	number := req.GetNum()
+	if number < 0 {
+		return status.Errorf(
+			codes.InvalidArgument,
+			fmt.Sprintf("Received negative number: %v", number),
+		)
+	}
 	k := int32(2)
 	num := req.GetNum()
 	for num > 1 {
