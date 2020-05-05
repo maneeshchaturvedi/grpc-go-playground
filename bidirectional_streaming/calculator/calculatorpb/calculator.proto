@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "/bidirectional_streaming/calculator/calculatorpb";
+
+message FindMaximumRequest { int64 Number = 1; }
+
+message FindMaximumResponse { int64 Maximum = 1; }
+
+service FindMaximumService {
+  rpc FindMaximun(stream FindMaximumRequest)
+      returns (stream FindMaximumResponse) {};
+}
