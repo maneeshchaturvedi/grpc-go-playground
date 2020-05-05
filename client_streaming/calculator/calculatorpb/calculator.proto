@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "/client_streaming/calculator/calculatorpb";
+
+message AverageRequest { int64 num = 1; }
+
+message AverageResponse {float average = 1;}
+
+service AverageService {
+
+  rpc Average(stream AverageRequest) returns (AverageResponse) {};
+}
