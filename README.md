@@ -1,4 +1,4 @@
-# grpc-do-playground
+# grpc-go-playground
 
 Contains examples of grpc with go. All the four API mechanisms, Unary, Server Streaming, Client Streaming and Bi directional Streaming are covered here. 
 
