@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 
-	"github.com/maneeshchaturvedi/grpc-go-playground/greet/greetpb"
+	"github.com/maneeshchaturvedi/grpc-go-playground/unary/greet/greetpb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type server struct{}
@@ -22,6 +25,26 @@ func (*server) Greet(ctx context.Context, req *greetpb.GreetRequest) (*greetpb.G
 
 	res := &greetpb.GreetResponse{
 		Result: greeting,
+	}
+	return res, nil
+}
+
+func (*server) GreetWithDeadline(ctx context.Context, req *greetpb.GreetWithDeadlineRequest) (*greetpb.GreetWithDeadlineResponse, error) {
+	fmt.Printf("GreetWithDeadline Server invoke with : %v\n", req)
+	for i := 0; i < 3; i++ {
+		if ctx.Err() == context.DeadlineExceeded {
+			log.Println("client cancelled the request")
+			return nil, status.Error(codes.Canceled, "Client cancelled the request")
+		}
+		time.Sleep(1 * time.Second)
+	}
+	firstName := req.GetGreeting().GetFirstName()
+	lastName := req.GetGreeting().GetLastName()
+
+	greeting := "Hello " + firstName + " " + lastName
+
+	res := &greetpb.GreetWithDeadlineResponse{
+		Response: greeting,
 	}
 	return res, nil
 }
